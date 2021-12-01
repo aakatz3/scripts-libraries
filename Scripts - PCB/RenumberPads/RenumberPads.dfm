@@ -3,7 +3,7 @@ object RenumberPads: TRenumberPads
   Top = 0
   BorderIcons = [biSystemMenu]
   Caption = 'Renumber Pads'
-  ClientHeight = 145
+  ClientHeight = 204
   ClientWidth = 298
   Color = clBtnFace
   DragMode = dmAutomatic
@@ -23,7 +23,7 @@ object RenumberPads: TRenumberPads
     Left = 8
     Top = 8
     Width = 280
-    Height = 128
+    Height = 192
     Caption = 'Renumber setup'
     TabOrder = 0
     object lblFirstPadIndex: TLabel
@@ -40,6 +40,20 @@ object RenumberPads: TRenumberPads
       Height = 13
       Caption = 'Pad Index Increment'
     end
+    object lblPadSkip: TLabel
+      Left = 32
+      Top = 92
+      Width = 96
+      Height = 13
+      Caption = 'Repeat Index Times'
+    end
+    object lblPrefix: TLabel
+      Left = 32
+      Top = 120
+      Width = 28
+      Height = 13
+      Caption = 'Prefix'
+    end
     object edFirstPadNumber: TEdit
       Left = 160
       Top = 24
@@ -50,24 +64,6 @@ object RenumberPads: TRenumberPads
       TabOrder = 0
       Text = '1'
     end
-    object btnOK: TButton
-      Left = 40
-      Top = 88
-      Width = 75
-      Height = 25
-      Caption = 'OK'
-      TabOrder = 2
-      OnClick = btnOKClick
-    end
-    object btnCancel: TButton
-      Left = 168
-      Top = 88
-      Width = 75
-      Height = 25
-      Caption = 'Cancel'
-      TabOrder = 3
-      OnClick = btnCancelClick
-    end
     object edPadIncrement: TEdit
       Left = 160
       Top = 56
@@ -77,6 +73,42 @@ object RenumberPads: TRenumberPads
       NumbersOnly = True
       TabOrder = 1
       Text = '1'
+    end
+    object edPadSkip: TEdit
+      Left = 160
+      Top = 88
+      Width = 81
+      Height = 21
+      Alignment = taRightJustify
+      NumbersOnly = True
+      TabOrder = 2
+      Text = '1'
+    end
+    object btnOK: TButton
+      Left = 40
+      Top = 160
+      Width = 75
+      Height = 25
+      Caption = 'OK'
+      TabOrder = 3
+      OnClick = btnOKClick
+    end
+    object btnCancel: TButton
+      Left = 168
+      Top = 160
+      Width = 75
+      Height = 25
+      Caption = 'Cancel'
+      TabOrder = 4
+      OnClick = btnCancelClick
+    end
+    object edPrefix: TEdit
+      Left = 160
+      Top = 120
+      Width = 80
+      Height = 21
+      Alignment = taRightJustify
+      TabOrder = 5
     end
   end
 end

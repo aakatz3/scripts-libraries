@@ -20,13 +20,21 @@ procedure TRenumberPads.btnOKClick(Sender: TObject);
 Var
     PadIndex     : Integer;
     PadIncrement : Integer;
+    SkipInc      : Integer;
+    Skip         : Integer;
+    Prefix       : String;
 
 Begin
 
      // Get requested first index number
     PadIndex := StrToInt(edFirstPadNumber.Text);
     PadIncrement := StrToInt(edPadIncrement.Text);
+    Skip := StrToInt(edPadSkip.Text);
+    Prefix := edPrefix.Text;
     RenumberPads.Visible := 0;
+
+    SkipInc := 0;
+
 
      // Ask user to select first pad object
     PadObject := Board.GetObjectAtCursor(MkSet(ePadObject), AllLayers,
@@ -38,12 +46,15 @@ Begin
         PCBServer.SendMessageToRobots(PadObject.I_ObjectAddress, c_Broadcast,
                                PCBM_BeginModify , c_NoEventData);
          // change pad index
-        PadObject.Name := PadIndex;
+        PadObject.Name := Format(Prefix + '%d', [PadIndex]);
         PCBServer.SendMessageToRobots(PadObject.I_ObjectAddress, c_Broadcast,
                                PCBM_EndModify , c_NoEventData);
         PCBServer.PostProcess;
 
-        PadIndex := PadIndex + PadIncrement;
+        if Not SkipInc mod Skip = 0 Then
+            PadIndex := PadIndex + PadIncrement;
+        inc(SkipInc);
+
          // ask user to select next pad in infinite loop
         PadObject := Board.GetObjectAtCursor(MkSet(ePadObject), AllLayers,
                                       'Choose a pad');
